@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Detection</title>
+    <style>
+        body {
+            text-align: center;
+            font-size: 20px;
+            background-color: rgb(208, 214, 214);
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            padding: 3% 7%;
+        }
+        p {
+            color: rgb(16, 168, 16);
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="show"></div>
+    <p class="message"></p>
+
+    <script>
+    const showEl = document.getElementById('show');
+    const p = document.querySelector('p');
+
+    const pressed = [];
+    const secretCode = 'charles';
+
+    window.addEventListener('keyup', (e) =>{
+        console.log(e.key);
+        pressed.push(e.key);
+        pressed.splice(-secretCode.length -1, pressed.length - secretCode.length);
+        showEl.innerHTML = `[ ${pressed} ]`
+
+        if(pressed.join('').includes(secretCode)){
+            console.log('DING DING');
+            p.innerHTML = 'You`ve just cracked the secretcode';
+        }
+        console.log(pressed);
+
+    })
+
+    </script>
+</body>
+</html>
